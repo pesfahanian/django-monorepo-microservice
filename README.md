@@ -18,6 +18,12 @@
 
 ## Usage
 
+Make all the `.sh` files executable.
+
+```sh
+find . -type f -iname "*.sh" -exec chmod +x {} \;
+```
+
 Install all the requirements:
 
 ```sh

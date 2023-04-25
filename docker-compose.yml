@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+
+    service1:
+        container_name: service1
+        build:
+            dockerfile: ./docker/service1.Dockerfile
+        image: dmm/service1
+        ports:
+            - 8200:8200
