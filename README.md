@@ -41,6 +41,13 @@ Make all the `.sh` files executable.
 find . -type f -iname "*.sh" -exec chmod +x {} \;
 ```
 
+Create and activate a virtual environment:
+
+```sh
+python -m venv .venv
+source .venv/bin/activate
+```
+
 Install all the requirements:
 
 ```sh
@@ -62,3 +69,9 @@ Generate gRPC codes:
 ```sh
 ./scripts/codegen.sh
 ```
+
+create database "dmm-wallet";
+grant all privileges on database "dmm-wallet" to postgres;
+
+create database "dmm-ledger";
+grant all privileges on database "dmm-ledger" to postgres;

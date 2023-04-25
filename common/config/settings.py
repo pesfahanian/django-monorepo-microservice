@@ -74,6 +74,12 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
+DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+
+DATETIME_INPUT_FORMAT = '%Y-%m-%d %H:%M:%S'
+
+DATE_FORMAT = '%Y-%m-%d'
+
 USE_I18N = True
 
 USE_TZ = True
