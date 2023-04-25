@@ -27,7 +27,7 @@ ADMIN_PASSWORD = config(
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': config(
 #             'DB_NAME',
-#             default='dmm-service1',
+#             default='dmm-wallet',
 #         ),
 #         'USER': config(
 #             'DB_USER',

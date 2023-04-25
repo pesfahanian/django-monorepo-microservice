@@ -2,10 +2,10 @@ version: '3.9'
 
 services:
 
-    service1:
-        container_name: service1
+    dmm-wallet:
+        container_name: dmm-wallet
         build:
-            dockerfile: ./docker/service1.Dockerfile
-        image: dmm/service1
+            dockerfile: ./docker/wallet.Dockerfile
+        image: dmm/wallet
         ports:
             - 8200:8200

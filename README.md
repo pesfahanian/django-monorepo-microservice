@@ -1,16 +1,33 @@
 # Django Monorepo Microservice
 
-### Services:
+Simple payment application utilizing [Monorepo](https://monorepo.tools/) codebase architecture and [Microservice](https://microservices.io/) deployment architecture.
 
--   Service 1
+---
+
+## Services
+
+### Wallet:
+
+-   Simple CRUD operations
+-   Deposit and withdraw features
+-   Functionalities:
     -   Database
     -   REST API
     -   Async events
     -   gRPC communication
--   Service 2
+
+### Ledger:
+
+-   Double-entry ledger
+-   Simple transaction journal
+-   Functionalities:
     -   Database
     -   Async events
--   Service 3
+
+### PG:
+
+-   Bank API proxy middleman.
+-   Functionalities:
     -   Ephemeral
     -   gRPC communication
 

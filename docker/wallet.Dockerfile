@@ -12,12 +12,12 @@ RUN ls
 
 COPY . .
 
-COPY ./service/service1/scripts/entrypoint.sh /entrypoint.sh
+COPY ./service/wallet/scripts/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
 RUN pip install -r requirements.txt
-RUN pip install -r service/service1/requirements.txt
+RUN pip install -r service/wallet/requirements.txt
 
 EXPOSE 8200
 
