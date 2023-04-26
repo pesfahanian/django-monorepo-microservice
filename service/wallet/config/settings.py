@@ -15,6 +15,7 @@ from common.config.settings import *
 INSTALLED_APPS += [
     # * Apps
     'apps.core.apps.CoreConfig',
+    'apps.wallet.apps.WalletConfig',
 
     # * Packages
     'corsheaders',
@@ -42,6 +43,10 @@ ADMIN_PASSWORD = config(
     'ADMIN_PASSWORD',
     default='admin',
 )
+
+DECIMAL_MAX_DIGITS = 14
+
+DECIMAL_PLACES = 4
 
 # * ----------------------------- Postgres -----------------------------
 DATABASES = {

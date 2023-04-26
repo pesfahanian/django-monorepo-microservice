@@ -10,7 +10,7 @@ from rest_framework import permissions
 schema_view = get_schema_view(
     openapi.Info(
         title='DMM-Wallet Service',
-        default_version='0.1.0',
+        default_version='0.0.1',
         description='Swagger UI for DMM-Wallet service API schema.',
     ),
     permission_classes=[
