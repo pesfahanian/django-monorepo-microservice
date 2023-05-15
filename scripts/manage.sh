@@ -9,11 +9,9 @@ if [ "$1" = "--all" -o "$1" = "-A" ]; then
     for service in $services
     do
         gnome-terminal --title="${service^} Service" -x sh -c \
-            python $here/service/$service/manage.py $2 $3
+            python $here/service/$service/manage.py ${@:2}
     done
 else
     gnome-terminal --title="${1^} Service" -- \
-        python $here/service/$1/manage.py $2 $3
+        python $here/service/$1/manage.py ${@:2}
 fi
-
-# TODO: Add the rest of the arguments instead of 2 3 ...
