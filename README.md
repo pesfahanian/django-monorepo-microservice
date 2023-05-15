@@ -51,12 +51,6 @@ Generate JWT RS256 key-pair:
 ./scripts/keygen.sh
 ```
 
-Generate gRPC codes:
-
-```sh
-./scripts/codegen.sh
-```
-
 With a UUID Version 4 `User ID` value obtained from [uuidgenerator.net](https://www.uuidgenerator.net/version4) (or during the `seed` step of development), go to [jwt.io](https://jwt.io/), select the `RS256` algorithm, and use the public and private keys from the JWT RS256 key-pair generated earlier and the following payload to generate a new JWT token.
 
 ```json
@@ -87,6 +81,12 @@ Install all the requirements:
 
 > To install the requirements of only one service, run `./scripts/install.sh <SERVICE NAME>`.
 
+Generate gRPC codes:
+
+```sh
+./scripts/codegen.sh
+```
+
 Run migrations for all services:
 
 ```sh
@@ -102,8 +102,6 @@ Seed the starter data:
 ```
 
 > This will create a sample `Wallet` record in the `wallet` service database. A prompt will appear requeuing conformation and displaying the `User ID`.
-
-
 
 drop database "dmm-wallet";
 drop database "dmm-ledger";

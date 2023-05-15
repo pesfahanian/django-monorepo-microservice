@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+service PGService {
+  rpc PerformTransaction(PerformTransactionRequest)
+      returns (google.protobuf.Empty) {};
+}
+
+message PerformTransactionRequest {
+  string userID = 1;
+  float amount = 2;
+  int32 type = 3;
+}

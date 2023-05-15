@@ -94,6 +94,6 @@ venv/
 
 # Custom
 *.md
-scripts/coverage.sh
-scripts/migration.sh
-scripts/run.sh
+docs/
+health_check_storage_test/
+scripts/
