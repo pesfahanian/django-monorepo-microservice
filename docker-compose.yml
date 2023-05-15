@@ -2,6 +2,20 @@ version: '3.9'
 
 services:
 
+    dmm-postgres:
+        container_name: dmm-postgres
+        image: postgres
+        restart: always
+        ports:
+            - 5432:5432
+        networks:
+            - dmm-postgres-net
+        volumes:
+            - dmm-postgres-data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=1234
+
     dmm-wallet:
         container_name: dmm-wallet
         build:
@@ -9,3 +23,16 @@ services:
         image: dmm/wallet
         ports:
             - 8200:8200
+        depends_on:
+            - dmm-postgres
+        networks:
+            - dmm-postgres-net
+        environment:
+            - DB_HOST=dmm-postgres
+
+networks:
+    dmm-postgres-net:
+        driver: bridge
+
+volumes:
+    dmm-postgres-data:

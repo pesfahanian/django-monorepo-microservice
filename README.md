@@ -2,6 +2,8 @@
 
 Simple payment application utilizing [Monorepo](https://monorepo.tools/) codebase architecture and [Microservice](https://microservices.io/) deployment architecture.
 
+The Monorepo codebase architecture was achieved **without** using any of the traditional build tools (_e.g._ [Bazel](https://bazel.build/), [Pants](https://www.pantsbuild.org/)).
+
 ---
 
 ## Services
