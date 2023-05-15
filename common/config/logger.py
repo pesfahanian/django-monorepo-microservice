@@ -37,6 +37,7 @@ class CustomFilter(logging.Filter):
 
 class CustomFormat(logging.Formatter):
     grey = '\x1b[38;21m'
+    green = '\x1b[32;21m'
     yellow = '\x1b[33;21m'
     red = '\x1b[31;21m'
     bold_red = '\x1b[31;1m'
@@ -45,7 +46,7 @@ class CustomFormat(logging.Formatter):
     format = '[%(asctime)s] %(levelname)s | %(message)s (%(filename)s:%(lineno)d)'
 
     FORMATS = {
-        logging.DEBUG: grey + format + reset,
+        logging.DEBUG: green + format + reset,
         logging.INFO: grey + format + reset,
         logging.WARNING: yellow + format + reset,
         logging.ERROR: red + format + reset,

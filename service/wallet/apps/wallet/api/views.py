@@ -7,7 +7,7 @@ from apps.wallet.api.serializers import WalletSerializer
 from apps.wallet.models import Wallet
 
 
-class GetWalletAPIView(ListAPIView):
+class WalletGetAPIView(ListAPIView):
     permission_classes = (IsAuthenticated, )
     serializer_class = WalletSerializer
     pagination_class = None
@@ -16,4 +16,4 @@ class GetWalletAPIView(ListAPIView):
 
     def get_queryset(self, *args, **kwargs) -> QuerySet:
         return super().get_queryset(*args, **kwargs).\
-            filter(user_id=self.request.user.id)
+            filter(user_id=self.request.user.id, )

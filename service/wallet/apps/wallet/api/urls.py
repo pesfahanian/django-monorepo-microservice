@@ -5,6 +5,6 @@ from apps.wallet.api import views
 urlpatterns = [
     path(
         '',
-        views.GetWalletAPIView.as_view(),
+        views.WalletGetAPIView.as_view(),
     ),
 ]

@@ -15,6 +15,7 @@ from common.config.settings import *
 INSTALLED_APPS += [
     # * Apps
     'apps.core.apps.CoreConfig',
+    'apps.transaction.apps.TransactionConfig',
     'apps.wallet.apps.WalletConfig',
 
     # * Packages
