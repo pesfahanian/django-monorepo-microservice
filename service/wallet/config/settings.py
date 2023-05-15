@@ -110,6 +110,8 @@ CSRF_COOKIE_SECURE = config(
     cast=bool,
 )
 
+PUBLIC_KEY_PATH = f'{REPO_DIR}/keys/jwtRS256.key.pub'
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME':
     timedelta(minutes=config(
@@ -126,7 +128,7 @@ SIMPLE_JWT = {
     'ALGORITHM':
     'RS256',
     'VERIFYING_KEY':
-    open('keys/jwtRS256.key.pub').read(),
+    open(PUBLIC_KEY_PATH).read(),
 }
 
 REST_FRAMEWORK = {

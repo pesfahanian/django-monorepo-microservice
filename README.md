@@ -13,6 +13,7 @@ Simple payment application utilizing [Monorepo](https://monorepo.tools/) codebas
 -   Functionalities:
     -   Database
     -   REST API
+    -   Admin panel
     -   Async events
     -   gRPC communication
 
@@ -22,6 +23,7 @@ Simple payment application utilizing [Monorepo](https://monorepo.tools/) codebas
 -   Simple transaction journal
 -   Functionalities:
     -   Database
+    -   Admin panel
     -   Async events
 
 ### PG:
