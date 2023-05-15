@@ -58,7 +58,7 @@ Install all the requirements:
 ./scripts/install.sh --all
 ```
 
-> To install the development requirements, use the `--develop` or `-D` flag.
+> To also additionally install the development requirements, use the `--develop` or `-D` flag.
 
 > To install the requirements of only one service, run `./scripts/install.sh <SERVICE NAME>`.
 
@@ -74,8 +74,18 @@ Generate gRPC codes:
 ./scripts/codegen.sh
 ```
 
-create database "dmm-wallet";
-grant all privileges on database "dmm-wallet" to postgres;
+Run migrations for all services:
 
-create database "dmm-ledger";
-grant all privileges on database "dmm-ledger" to postgres;
+```sh
+./scripts/manage.sh --all migrate
+```
+
+> This will perform migrations for the `wallet` and `ledger` services.
+
+Seed the starter data:
+
+```sh
+./scripts/manage.sh --all seed
+```
+
+> This will create a sample `Wallet` record in the `wallet` service database.

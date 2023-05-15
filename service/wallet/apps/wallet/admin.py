@@ -1,28 +1,14 @@
 from django.contrib import admin
 
+from common.admin import TemporalModelAdmin, ToggleableModelAdmin
+
 from apps.wallet.models import Wallet
 
 
 @admin.register(Wallet)
-class WalletAdmin(admin.ModelAdmin):
-    readonly_fields = (
-        'id',
-        '_created_at',
-        '_updated_at',
-    )
+class WalletAdmin(TemporalModelAdmin, ToggleableModelAdmin):
+    readonly_fields = ('id', ) + TemporalModelAdmin.readonly_fields
     list_display = (
         'user_id',
         'balance',
-        '_created_at',
-        '_updated_at',
-        'is_enabled',
-    )
-    ordering = ('-created_at', )
-
-    def _created_at(self, obj: Wallet):
-        ann = obj.created_at.strftime("%d %b %Y %H:%M:%S")
-        print(f'{type(ann) = }')
-        return ann
-
-    def _updated_at(self, obj: Wallet):
-        return obj.updated_at.strftime("%d %b %Y %H:%M:%S")
+    ) + TemporalModelAdmin.list_display + ToggleableModelAdmin.list_display
