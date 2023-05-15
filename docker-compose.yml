@@ -12,6 +12,7 @@ services:
             - dmm-postgres-net
         volumes:
             - dmm-postgres-data:/var/lib/postgresql/data
+            - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
         environment:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=1234
