@@ -3,6 +3,7 @@ from kombu import Queue
 from common.events.queues import Queue
 from common.events.utils import generate_queue
 
+# TODO: Try absolute import here.
 from .exchanges import ServiceExchange
 
 

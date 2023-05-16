@@ -12,6 +12,7 @@ sys.path.append(str(REPO_DIR))
 
 from common.config.settings import *
 
+# TODO: Try absolute imports here.
 from .exchanges import ServiceExchange
 from .queues import ServiceQueue, SERVICE_TASK_QUEUES
 

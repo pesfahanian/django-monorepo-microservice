@@ -1,5 +1,6 @@
 from celery import Celery
 
+# TODO: Try absolute import here.
 from . import settings
 
 app = Celery('dmm-wallet')
