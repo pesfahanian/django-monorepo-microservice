@@ -17,6 +17,19 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=1234
 
+    dmm-rabbitmq:
+        container_name: dmm-rabbitmq
+        image: rabbitmq:3-management
+        restart: always
+        ports:
+            - 5672:5672
+            - 15672:15672
+        networks:
+            - dmm-rabbitmq-net
+        environment:
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=guest
+
     dmm-wallet:
         container_name: dmm-wallet
         build:
@@ -26,11 +39,14 @@ services:
             - 8200:8200
         depends_on:
             - dmm-postgres
+            - dmm-rabbitmq
         networks:
             - dmm-postgres-net
+            - dmm-rabbitmq-net
             - dmm-pg-net
         environment:
             - DB_HOST=dmm-postgres
+            - RABBITMQ_HOST=dmm-rabbitmq
             - PG_SERVICE_GRPC_HOST=dmm-pg
 
     dmm-pg:
@@ -45,6 +61,8 @@ services:
 
 networks:
     dmm-postgres-net:
+        driver: bridge
+    dmm-rabbitmq-net:
         driver: bridge
     dmm-pg-net:
         driver: bridge

@@ -147,3 +147,40 @@ REST_FRAMEWORK = {
     DATE_FORMAT,
 }
 # * --------------------------------------------------------------------
+
+# * ----------------------------- RabbitMQ -----------------------------
+RABBITMQ_USER = config(
+    'RABBITMQ_USER',
+    default='guest',
+)
+RABBITMQ_PASSWORD = config(
+    'RABBITMQ_PASSWORD',
+    default='guest',
+)
+RABBITMQ_HOST = config(
+    'RABBITMQ_HOST',
+    default='0.0.0.0',
+)
+RABBITMQ_PORT = config(
+    'RABBITMQ_PORT',
+    default=5672,
+    cast=int,
+)
+RABBITMQ_DSN = f'amqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}//'
+# * --------------------------------------------------------------------
+
+# * ------------------------------ Celery ------------------------------
+CELERY_BROKER_URL = RABBITMQ_DSN
+CELERY_RESULT_BACKEND = None
+CELERY_ACCEPT_CONTENT = [
+    'application/json',
+]
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_IGNORE_RESULT = True
+# CELERY_DEFAULT_QUEUE = str(ServiceQueue.default.name)
+# CELERY_DEFAULT_EXCHANGE = str(ServiceExchange.default.name)
+# CELERY_DEFAULT_ROUTING_KEY = str(ServiceQueue.default.name)
+# CELERY_TASK_QUEUES = (ServiceQueue.default, ) + SERVICE_TASK_QUEUES
+# * --------------------------------------------------------------------
