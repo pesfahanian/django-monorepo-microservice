@@ -16,4 +16,4 @@ do
 done
 
 echo "=================== Starting Servers ==================="
-python ./service/wallet/manage.py grpcserver --port 50150
+python ./service/pg/manage.py grpcserver --port 50150

@@ -10,13 +10,13 @@ ENV PYTHONPATH "${PYTHONPATH}:/app"
 
 COPY . .
 
-COPY ./service/wallet/scripts/entrypoint.sh /entrypoint.sh
+COPY ./service/pg/scripts/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
 RUN pip install -r requirements.txt
-RUN pip install -r service/wallet/requirements.txt
+RUN pip install -r service/pg/requirements.txt
 
-EXPOSE 8200
+EXPOSE 50150
 
 ENTRYPOINT ["/entrypoint.sh"]

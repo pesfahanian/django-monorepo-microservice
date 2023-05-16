@@ -29,10 +29,11 @@ class CustomFilter(logging.Filter):
         ]
 
     def filter(self, record: logging.LogRecord) -> bool:
+        message = record.getMessage()
         return all([
-            not record.getMessage().startswith(filter_item)
+            not message.startswith(filter_item)
             for filter_item in self.filter_items
-        ])
+        ]) and (not 'svg' in message)
 
 
 class CustomFormat(logging.Formatter):

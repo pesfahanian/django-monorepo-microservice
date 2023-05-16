@@ -28,11 +28,25 @@ services:
             - dmm-postgres
         networks:
             - dmm-postgres-net
+            - dmm-pg-net
         environment:
             - DB_HOST=dmm-postgres
+            - PG_SERVICE_GRPC_HOST=dmm-pg
+
+    dmm-pg:
+        container_name: dmm-pg
+        build:
+            dockerfile: ./docker/pg.Dockerfile
+        image: dmm/pg
+        ports:
+            - 50150:50150
+        networks:
+            - dmm-pg-net
 
 networks:
     dmm-postgres-net:
+        driver: bridge
+    dmm-pg-net:
         driver: bridge
 
 volumes:
