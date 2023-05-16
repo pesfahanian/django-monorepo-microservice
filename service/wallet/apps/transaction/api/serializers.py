@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from rest_framework import serializers
 
 from common.api.serializers import TemporalModelSerializer
@@ -15,8 +17,10 @@ class TransactionSerializer(TemporalModelSerializer):
     id = serializers.UUIDField(read_only=True)
     status = serializers.IntegerField(read_only=True)
 
-    # TODO: amount should be a decimal field in response.
-    amount = serializers.FloatField()
+    amount = serializers.DecimalField(
+        max_digits=settings.DECIMAL_MAX_DIGITS,
+        decimal_places=settings.DECIMAL_PLACES,
+    )
     type = serializers.ChoiceField(choices=TransactionType.choices)
 
     class Meta:

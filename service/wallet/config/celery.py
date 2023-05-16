@@ -1,8 +1,8 @@
 from __future__ import absolute_import, unicode_literals
 
+import os
 from pathlib import Path
 import sys
-import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

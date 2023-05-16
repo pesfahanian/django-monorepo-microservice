@@ -7,17 +7,17 @@ from grpc._server import _Context
 
 from proto import pg_pb2, pg_pb2_grpc
 
-from apps.pg.handlers import perform_transaction_handler
+from apps.pg.handlers import transaction_perform_handler
 
 logger = logging.getLogger('django')
 
 
 class PGService(pg_pb2_grpc.PGServiceServicer):
 
-    def PerformTransaction(self, request: pg_pb2.PerformTransactionRequest,
+    def TransactionPerform(self, request: pg_pb2.TransactionPerformRequest,
                            context: _Context) -> empty_pb2.Empty:
         try:
-            perform_transaction_handler(
+            transaction_perform_handler(
                 user_id=request.userID,
                 amount=request.amount,
                 type=request.type,
@@ -26,7 +26,7 @@ class PGService(pg_pb2_grpc.PGServiceServicer):
             return empty_pb2.Empty()
 
         except Exception as e:
-            details = ('Failure in `PGService.PerformTransaction()`. '
+            details = ('Failure in `PGService.TransactionPerform()`. '
                        f'Reason: {str(e)}.')
             logger.error(details)
             context.abort(

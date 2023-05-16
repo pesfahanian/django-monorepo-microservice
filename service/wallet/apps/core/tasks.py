@@ -10,6 +10,7 @@ from config.queues import ServiceQueue
 logger = logging.getLogger('django')
 
 
+# TODO: Add type-hinting here.
 def task(queue: Queue, name: str):
     return _task(
         queue=queue,
