@@ -148,7 +148,5 @@ jwtRS256.key.pub
 # Custom
 .vscode/
 static/
-docs/env.json
-docs/env.txt
-./dev.py
-./test.py
+dev.py
+test.py

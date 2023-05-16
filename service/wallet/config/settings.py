@@ -130,6 +130,8 @@ SIMPLE_JWT = {
     'RS256',
     'VERIFYING_KEY':
     open(PUBLIC_KEY_PATH).read(),
+    'USER_ID_FIELD':
+    'user_id',
 }
 
 REST_FRAMEWORK = {

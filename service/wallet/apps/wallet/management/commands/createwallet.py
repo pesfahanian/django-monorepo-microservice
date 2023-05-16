@@ -19,10 +19,15 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs) -> None:
         try:
             user_id = kwargs['user_id']
+
+            Wallet.objects.get_or_create(user_id=user_id)
+
             self.stdout.write(self.style.SUCCESS(f'UserID: {user_id}'))
-            confirmation = input('Create wallet for this user ID? (yes/no): ')
-            if (confirmation.lower() == 'yes'):
-                Wallet.objects.get_or_create(user_id=user_id)
+
+            while True:
+                confirmation = input('Exit? (yes/no): ')
+                if (confirmation.lower() == 'yes'):
+                    break
 
         except Exception as e:
             raise CommandError(f'Failure in `createwallet` command. '
