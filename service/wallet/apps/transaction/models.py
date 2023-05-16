@@ -37,5 +37,13 @@ class Transaction(UUIDModel, TemporalModel):
         default=TransactionStatus.PENDING,
     )
 
+    def success(self) -> None:
+        self.status = TransactionStatus.SUCCESS
+        self.save()
+
+    def fail(self) -> None:
+        self.status = TransactionStatus.FAIL
+        self.save()
+
     def __str__(self) -> str:
         return f'{self.id}-{self.type}'

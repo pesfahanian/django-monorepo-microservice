@@ -40,7 +40,6 @@ class Wallet(UUIDModel, ToggleableModel, TemporalModel):
         logger.info(f'Depositing `{amount}` to user `{self.user_id}` wallet.')
         self.balance += amount
         self.save()
-        # TODO: Ledger producer background task here.
 
     def withdraw(self, amount: Decimal) -> None:
         logger.info(
@@ -50,7 +49,6 @@ class Wallet(UUIDModel, ToggleableModel, TemporalModel):
                 f'Insufficient amount in user `{self.user_id}` wallet')
         self.locked = self.locked - amount
         self.save()
-        # TODO: Ledger producer background task here.
 
     def __str__(self) -> str:
         return str(self.user_id)

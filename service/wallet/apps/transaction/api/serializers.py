@@ -3,8 +3,8 @@ from rest_framework import serializers
 from common.api.serializers import TemporalModelSerializer
 from common.models.choices import TransactionType
 
-from apps.transaction.hooks import perform_transaction_hook
 from apps.transaction.models import Transaction
+from apps.transaction.tasks import transaction_create_task
 
 from apps.wallet.models import Wallet
 
@@ -15,6 +15,7 @@ class TransactionSerializer(TemporalModelSerializer):
     id = serializers.UUIDField(read_only=True)
     status = serializers.IntegerField(read_only=True)
 
+    # TODO: amount should be a decimal field in response.
     amount = serializers.FloatField()
     type = serializers.ChoiceField(choices=TransactionType.choices)
 
@@ -39,16 +40,12 @@ class TransactionSerializer(TemporalModelSerializer):
             raise serializers.ValidationError(
                 f'Wallet for user with ID `{user_id}` does not exist.')
 
-        perform_transaction_hook(
-            user_id=user_id,
-            amount=amount,
-            type=type,
-        )
-
         transaction_obj = Transaction.objects.create(
             wallet=wallet_obj,
             amount=amount,
             type=type,
         )
+
+        transaction_create_task.delay(transaction_id=str(transaction_obj.id))
 
         return transaction_obj

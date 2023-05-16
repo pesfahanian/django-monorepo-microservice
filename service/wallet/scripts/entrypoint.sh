@@ -22,4 +22,5 @@ echo "=================== Running Commands ==================="
 python ./service/wallet/manage.py createadmin
 
 echo "=================== Starting Servers ==================="
-python ./service/wallet/manage.py runserver 0.0.0.0:8200
+python ./service/wallet/manage.py runserver 0.0.0.0:8200 & \
+celery -A service.wallet.config worker -l info -n dmm-wallet-worker
