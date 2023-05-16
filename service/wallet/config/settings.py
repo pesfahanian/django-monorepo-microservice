@@ -12,6 +12,9 @@ sys.path.append(str(REPO_DIR))
 
 from common.config.settings import *
 
+from .exchanges import ServiceExchange
+from .queues import ServiceQueue, SERVICE_TASK_QUEUES
+
 INSTALLED_APPS += [
     # * Apps
     'apps.core.apps.CoreConfig',
@@ -179,8 +182,8 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_IGNORE_RESULT = True
-# CELERY_DEFAULT_QUEUE = str(ServiceQueue.default.name)
-# CELERY_DEFAULT_EXCHANGE = str(ServiceExchange.default.name)
-# CELERY_DEFAULT_ROUTING_KEY = str(ServiceQueue.default.name)
-# CELERY_TASK_QUEUES = (ServiceQueue.default, ) + SERVICE_TASK_QUEUES
-# * --------------------------------------------------------------------
+CELERY_DEFAULT_QUEUE = str(ServiceQueue.default.name)
+CELERY_DEFAULT_EXCHANGE = str(ServiceExchange.default.name)
+CELERY_DEFAULT_ROUTING_KEY = str(ServiceQueue.default.name)
+CELERY_TASK_QUEUES = (ServiceQueue.default, ) + SERVICE_TASK_QUEUES
+# # * --------------------------------------------------------------------

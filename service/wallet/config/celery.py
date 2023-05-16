@@ -12,6 +12,10 @@ app.conf.update({
     'result_serializer': settings.CELERY_RESULT_SERIALIZER,
     'task_ignore_results': settings.CELERY_TASK_IGNORE_RESULT,
     'timezone': settings.CELERY_TIMEZONE,
+    'default_queue': settings.CELERY_DEFAULT_QUEUE,
+    'default_exchange': settings.CELERY_DEFAULT_EXCHANGE,
+    'default_routing_key': settings.CELERY_DEFAULT_ROUTING_KEY,
+    'task_queues': settings.CELERY_TASK_QUEUES,
 })
 
 app.autodiscover_tasks(related_name='tasks')
