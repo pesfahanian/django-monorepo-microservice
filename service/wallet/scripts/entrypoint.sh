@@ -10,12 +10,10 @@ for proto in $protos
 do
     python -m grpc_tools.protoc \
         -I . \
-        --python_out="$here/generated" \
-        --grpc_python_out="$here/generated" \
+        --python_out=. \
+        --grpc_python_out=. \
         "$proto"
 done
-mv "$here/generated/proto"/* "$here/generated"
-rm -r "$here/generated/proto"
 
 echo "============= Applying Database Migrations ============="
 python ./service/wallet/manage.py migrate

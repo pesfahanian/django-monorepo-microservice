@@ -4,6 +4,7 @@ set -e
 
 here=`pwd`
 
+echo "================= Running gRPC Codegen ================="
 protos=`ls ./proto/*.proto`
 for proto in $protos
 do
@@ -13,3 +14,6 @@ do
         --grpc_python_out=. \
         "$proto"
 done
+
+echo "=================== Starting Servers ==================="
+python ./service/wallet/manage.py grpcserver --port 50150

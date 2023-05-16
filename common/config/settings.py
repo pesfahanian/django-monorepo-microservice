@@ -119,3 +119,16 @@ LOGGING = {
         }
     },
 }
+
+# * ------------------------------- gRPC -------------------------------
+PG_SERVICE_GRPC_HOST = config(
+    'PG_SERVICE_GRPC_HOST',
+    default='0.0.0.0',
+)
+PG_SERVICE_GRPC_PORT = config(
+    'PG_SERVICE_GRPC_PORT',
+    default=50150,
+    cast=int,
+)
+PG_SERVICE_GRPC_URL = f'{PG_SERVICE_GRPC_HOST}:{PG_SERVICE_GRPC_PORT}'
+# * --------------------------------------------------------------------
