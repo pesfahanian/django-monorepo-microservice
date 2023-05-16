@@ -1,3 +1,4 @@
+Django==4.2
 grpcio==1.50.0
 grpcio-tools==1.50.0
 python-decouple==3.7

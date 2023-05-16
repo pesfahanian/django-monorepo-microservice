@@ -23,12 +23,9 @@ os.environ.setdefault(
 django.setup()
 
 app = Celery(
-    'dmm-wallet',
+    'dmm-ledger',
     include=[
-        'apps.core.producers',
         'apps.core.tasks',
-        'apps.ledger.producers',
-        'apps.ledger.tasks',
         'apps.transaction.tasks',
     ],
 )

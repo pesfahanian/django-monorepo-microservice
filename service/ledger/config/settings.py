@@ -19,7 +19,6 @@ from .queues import ServiceQueue, SERVICE_TASK_QUEUES
 INSTALLED_APPS += [
     # * Apps
     'apps.core.apps.CoreConfig',
-    'apps.ledger.apps.LedgerConfig',
     'apps.transaction.apps.TransactionConfig',
     'apps.wallet.apps.WalletConfig',
 

@@ -2,6 +2,8 @@ from django.db import transaction
 
 from common.models.choices import TransactionType
 
+from apps.ledger.tasks import entry_create_task
+
 from apps.transaction.hooks import transaction_perform_hook
 from apps.transaction.models import Transaction
 
@@ -28,7 +30,7 @@ def transaction_create_handler(transaction_id: str) -> None:
                     case _:
                         pass
 
-                # TODO: Ledger producer background task here.
+                entry_create_task.delay(transaction_id=transaction_id)
             
             except:
                 transaction_obj.fail()
