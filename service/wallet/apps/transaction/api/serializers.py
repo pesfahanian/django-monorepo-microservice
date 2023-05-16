@@ -5,9 +5,11 @@ from common.models.choices import TransactionType
 
 from apps.transaction.models import Transaction
 
+from apps.wallet.models import Wallet
+
 
 class TransactionSerializer(TemporalModelSerializer):
-    user_id = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     id = serializers.UUIDField(read_only=True)
     status = serializers.IntegerField(read_only=True)
@@ -22,8 +24,24 @@ class TransactionSerializer(TemporalModelSerializer):
             'amount',
             'type',
             'status',
-            'user_id',
+            'user',
         ) + TemporalModelSerializer.Meta.fields
 
     def create(self, validated_data: dict) -> Transaction:
-        pass
+        user_id = validated_data['user'].id
+        amount = validated_data['amount']
+        type = validated_data['type']
+
+        try:
+            wallet_obj = Wallet.objects.get(user_id=user_id)
+        except Wallet.DoesNotExist:
+            raise serializers.ValidationError(
+                f'Wallet for user with ID `{user_id}` does not exist.')
+
+        transaction_obj = Transaction.objects.create(
+            wallet=wallet_obj,
+            amount=amount,
+            type=type,
+        )
+
+        return transaction_obj
