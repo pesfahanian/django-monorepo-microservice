@@ -188,7 +188,4 @@ CELERY_DEFAULT_QUEUE = str(ServiceQueue.default.name)
 CELERY_DEFAULT_EXCHANGE = str(ServiceExchange.default.name)
 CELERY_DEFAULT_ROUTING_KEY = str(ServiceQueue.default.name)
 CELERY_TASK_QUEUES = (ServiceQueue.default, ) + SERVICE_TASK_QUEUES
-CELERY_IMPORTS = (
-    'apps.ledger.consumers',
-)
 # * --------------------------------------------------------------------
