@@ -1,4 +1,3 @@
-from datetime import timedelta
 from pathlib import Path
 import sys
 
@@ -19,14 +18,7 @@ from .queues import ServiceQueue, SERVICE_TASK_QUEUES
 INSTALLED_APPS += [
     # * Apps
     'apps.core.apps.CoreConfig',
-    'apps.transaction.apps.TransactionConfig',
-    'apps.wallet.apps.WalletConfig',
-
-    # * Packages
-    'corsheaders',
-    'drf_yasg',
-    'rest_framework',
-    'rest_framework_simplejwt',
+    'apps.ledger.apps.LedgerConfig',
 
     # * Healthcheck
     'health_check',
@@ -59,7 +51,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config(
             'DB_NAME',
-            default='dmm-wallet',
+            default='dmm-ledger',
         ),
         'USER': config(
             'DB_USER',
@@ -98,14 +90,14 @@ ALLOWED_HOSTS = config(
 )
 
 CORS_ORIGIN_ALLOW_ALL = config(
-    'DEBUG',
+    'CORS_ORIGIN_ALLOW_ALL',
     default=True,
     cast=bool,
 )
 
 CSRF_TRUSTED_ORIGINS = config(
     'CSRF_TRUSTED_ORIGINS',
-    default='http://0.0.0.0:8200',
+    default='http://0.0.0.0:8201',
     cast=Csv(),
 )
 
@@ -114,42 +106,6 @@ CSRF_COOKIE_SECURE = config(
     default=False,
     cast=bool,
 )
-
-PUBLIC_KEY_PATH = f'{REPO_DIR}/keys/jwtRS256.key.pub'
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME':
-    timedelta(minutes=config(
-        'ACCESS_TOKEN_LIFETIME',
-        default=1440,
-        cast=int,
-    )),
-    'REFRESH_TOKEN_LIFETIME':
-    timedelta(days=config(
-        'REFRESH_TOKEN_LIFETIME',
-        default=16,
-        cast=int,
-    )),
-    'ALGORITHM':
-    'RS256',
-    'VERIFYING_KEY':
-    open(PUBLIC_KEY_PATH).read(),
-    'USER_ID_FIELD':
-    'user_id',
-}
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES':
-    ('rest_framework_simplejwt.authentication.JWTTokenUserAuthentication', ),
-    'DEFAULT_PAGINATION_CLASS':
-    'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE':
-    PAGE_SIZE,
-    'DATETIME_FORMAT':
-    DATETIME_FORMAT,
-    'DATE_FORMAT':
-    DATE_FORMAT,
-}
 # * --------------------------------------------------------------------
 
 # * ----------------------------- RabbitMQ -----------------------------
@@ -187,4 +143,7 @@ CELERY_DEFAULT_QUEUE = str(ServiceQueue.default.name)
 CELERY_DEFAULT_EXCHANGE = str(ServiceExchange.default.name)
 CELERY_DEFAULT_ROUTING_KEY = str(ServiceQueue.default.name)
 CELERY_TASK_QUEUES = (ServiceQueue.default, ) + SERVICE_TASK_QUEUES
+CELERY_IMPORTS = (
+    'apps.ledger.consumers',
+)
 # * --------------------------------------------------------------------

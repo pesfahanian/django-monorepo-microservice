@@ -26,7 +26,8 @@ app = Celery(
     'dmm-ledger',
     include=[
         'apps.core.tasks',
-        'apps.transaction.tasks',
+        'apps.ledger.consumers',
+        'apps.ledger.tasks',
     ],
 )
 
@@ -36,4 +37,4 @@ app.config_from_object(
 )
 
 app.autodiscover_tasks(related_name='tasks')
-app.autodiscover_tasks(related_name='producers')
+app.autodiscover_tasks(related_name='consumers')

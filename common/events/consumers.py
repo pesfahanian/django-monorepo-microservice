@@ -11,9 +11,15 @@ class AMQPConsumer(ConsumerStep):
         return [
             Consumer(
                 channel=channel,
-                queues=[self.queue],
-                callbacks=[self.handle_message],
-                accept=['json'],
+                queues=[
+                    self.queue,
+                ],
+                callbacks=[
+                    self.handle_message,
+                ],
+                accept=[
+                    'json',
+                ],
             ),
         ]
 

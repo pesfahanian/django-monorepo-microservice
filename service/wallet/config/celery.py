@@ -27,6 +27,7 @@ app = Celery(
     include=[
         'apps.core.producers',
         'apps.core.tasks',
+        'apps.ledger.consumers',
         'apps.ledger.producers',
         'apps.ledger.tasks',
         'apps.transaction.tasks',
@@ -40,3 +41,4 @@ app.config_from_object(
 
 app.autodiscover_tasks(related_name='tasks')
 app.autodiscover_tasks(related_name='producers')
+app.autodiscover_tasks(related_name='consumers')

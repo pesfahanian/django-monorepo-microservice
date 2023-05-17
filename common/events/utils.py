@@ -26,6 +26,6 @@ def generate_queue(name: str, exchange: Exchange) -> Queue:
         'queue_arguments': {
             'x-queue-type': 'classic'
         },
-        'durable': True
+        'durable': True,
     }
     return Queue(**data)
