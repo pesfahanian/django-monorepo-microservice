@@ -120,6 +120,10 @@ LOGGING = {
     },
 }
 
+DECIMAL_MAX_DIGITS = 14
+
+DECIMAL_PLACES = 4
+
 # * ------------------------------- API --------------------------------
 PAGE_SIZE = config(
     'PAGE_SIZE',

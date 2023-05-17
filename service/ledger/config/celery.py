@@ -39,7 +39,7 @@ app.config_from_object(
     namespace='CELERY',
 )
 
-
+# ! Hacky fix since consumer in the app didn't consume.
 def task(queue: Queue, name: str):
     return _task(
         queue=queue,

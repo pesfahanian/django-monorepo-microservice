@@ -50,10 +50,6 @@ ADMIN_PASSWORD = config(
     default='admin',
 )
 
-DECIMAL_MAX_DIGITS = 14
-
-DECIMAL_PLACES = 4
-
 # * ----------------------------- Postgres -----------------------------
 DATABASES = {
     'default': {

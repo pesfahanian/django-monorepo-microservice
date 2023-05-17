@@ -8,14 +8,13 @@ def entry_create_handler(transaction_id: str) -> None:
         transaction_obj = Transaction.objects.get(id=transaction_id, )
 
         entry_create_producer(
-            context={
-                'transaction_id': transaction_id,
-                'transaction_amount': str(transaction_obj.amount),
-                'transaction_type': transaction_obj.type,
-                'transaction_user_id': str(transaction_obj.wallet.user_id),
-                'transaction_created_at': str(transaction_obj.created_at),
-                'updated_at': str(transaction_obj.updated_at),
-            })
+            transaction_id=transaction_id,
+            user_id=str(transaction_obj.wallet.user_id),
+            amount=str(transaction_obj.amount),
+            type=transaction_obj.type,
+            created_at=str(transaction_obj.created_at),
+            updated_at=str(transaction_obj.updated_at),
+        )
 
     except Transaction.DoesNotExist:
         raise Exception(
