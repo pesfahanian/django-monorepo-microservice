@@ -10,6 +10,9 @@ logger = logging.getLogger('django')
 def entry_create_producer(transaction_id: str, user_id: str, amount: str,
                           type: int, created_at: str, updated_at: str) -> None:
     try:
+        logger.info(
+            'Producing a ledger `entry-create` with the following data:\n'
+            f'Transaction ID: `{transaction_id}` - User ID: `{user_id}`')
         producer(
             context={
                 'transaction_id': transaction_id,

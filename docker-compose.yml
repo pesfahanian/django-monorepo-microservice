@@ -28,6 +28,22 @@ services:
         env_file:
             - env/rabbitmq.env
 
+    dmm-ledger:
+        container_name: dmm-ledger
+        build:
+            dockerfile: ./docker/ledger.Dockerfile
+        image: dmm/ledger
+        ports:
+            - 8201:8201
+        depends_on:
+            - dmm-postgres
+            - dmm-rabbitmq
+        networks:
+            - dmm-postgres-net
+            - dmm-rabbitmq-net
+        env_file:
+            - env/ledger.env
+    
     dmm-wallet:
         container_name: dmm-wallet
         build:
