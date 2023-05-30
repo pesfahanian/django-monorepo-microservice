@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "88caadfe-615c-4b76-8a68-476555e97323",
+		"name": "dmm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20466217"
+	},
+	"item": [
+		{
+			"name": "Wallet Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/wallet/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"wallet",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/wallet/transactions/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"wallet",
+						"transactions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 25,\n  \"type\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/wallet/transactions/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"wallet",
+						"transactions",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTIxNDgyLCJpYXQiOjE2ODU0MzUwODIsImp0aSI6IjRkNGI2MjVhNzFjYzQ4NjRhYTYyY2M3M2QzMGZjZWNlIiwidXNlcl9pZCI6IjgyNDQzMjBjLTZkNDMtNGUxZS04NDg4LWIwMmMyMTE4YzE5MSJ9.Tz34TvRvdUm_ytx9f7qD3Lfy2cH7pxUBpALU0hpsGKvV_e98dPy87-LdCD2FOqV1ZIpaqtIuLMaIiI4zhazgzwIq4fTrbJU63Okn27a4i8iQZXxq3O_Uwh8yQ5PaCgWyBE5lzltjCWpt9FKQUcQDwPPRDvm2itDiqDjiul_rhF29twW9kWs1PV4Vwx8xKKNL8y-zHaKEEdMbKOFqvOXpTFJTj9ZwFdVOhPtX8p6ZNyreup1iGXViqeJHVnQNs9qEFH9091eygpYnPy88esy2v-SU709_GZnFdLTp_mEnHPJquzTwHv8O5PWvyuQwFem89ZCCpvIPXB-kCQQiBwESizghoBdGkOqw5knLImiG_e_bq_Ljh-ocKoB9jybrEHkrCqyFZepy4S-og_7ZIaKNGs_uZCjQjy51eZ6zbK0xP6F18ZKR0iw4JwoX55S5jnO3rph21gu-GvNa_ukgRfuCNy6o-FkrSQlKFKttRzNMJfShwHaPbWZaBXwNqpyCJEOggvaQe__rH8SxX3NoilnedRis1ou0vYoP_EnII1i3Z3jo6TRLOb36F6ftee-cezdxERmNqCapDhipCw-WPCvWlZMpF4dQXmsw70atecA1ZQNpsEZjufpxutpbeatW3-3N-q6QUrVHQKFG7usmfHAw91G3zYSo9nKt4xcz1i50C-E",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://0.0.0.0:8200",
+			"type": "string"
+		}
+	]
+}

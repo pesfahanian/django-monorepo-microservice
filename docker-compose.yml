@@ -13,9 +13,8 @@ services:
         volumes:
             - dmm-postgres-data:/var/lib/postgresql/data
             - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
-        environment:
-            - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=1234
+        env_file:
+            - env/postgres.env
 
     dmm-rabbitmq:
         container_name: dmm-rabbitmq
@@ -26,9 +25,8 @@ services:
             - 15672:15672
         networks:
             - dmm-rabbitmq-net
-        environment:
-            - RABBITMQ_DEFAULT_USER=guest
-            - RABBITMQ_DEFAULT_PASS=guest
+        env_file:
+            - env/rabbitmq.env
 
     dmm-wallet:
         container_name: dmm-wallet
@@ -44,10 +42,8 @@ services:
             - dmm-postgres-net
             - dmm-rabbitmq-net
             - dmm-pg-net
-        environment:
-            - DB_HOST=dmm-postgres
-            - RABBITMQ_HOST=dmm-rabbitmq
-            - PG_SERVICE_GRPC_HOST=dmm-pg
+        env_file:
+            - env/wallet.env
 
     dmm-pg:
         container_name: dmm-pg
