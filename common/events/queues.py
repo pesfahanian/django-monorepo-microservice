@@ -5,7 +5,6 @@ ENTITY = Entity.queue
 
 
 class Queue:
-
     class Ledger:
 
         default = get_name(

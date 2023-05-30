@@ -43,7 +43,7 @@ services:
             - dmm-rabbitmq-net
         env_file:
             - env/ledger.env
-    
+
     dmm-wallet:
         container_name: dmm-wallet
         build:

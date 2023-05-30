@@ -13,13 +13,11 @@ settings.SIMPLE_JWT['SIGNING_KEY'] = open(
 
 
 class User:
-
     def __init__(self, user_id: str) -> None:
         self.user_id = user_id
 
 
 class Command(BaseCommand):
-
     def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument(
             'user_id',

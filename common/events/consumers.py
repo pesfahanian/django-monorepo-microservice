@@ -6,7 +6,6 @@ from kombu.transport.virtual.base import Message
 
 
 class AMQPConsumer(ConsumerStep):
-
     def get_consumers(self, channel: Channel) -> list[Consumer]:
         return [
             Consumer(

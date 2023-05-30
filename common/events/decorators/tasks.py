@@ -14,9 +14,7 @@ from common.events.tasks import Task
 # TODO: Add type-hinting here.
 def task(queue: Queue, name: str, error_queue: Queue, app: Celery,
          logger: Logger):
-
     def decorator(func: Callable):
-
         @app.task(base=Task,
                   app=app,
                   name=name,

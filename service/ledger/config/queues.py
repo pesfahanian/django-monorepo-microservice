@@ -15,7 +15,6 @@ class ServiceQueue:
     )
 
     class Task:
-
         def _generate_queue(name: str) -> _Queue:
             return generate_queue(
                 name=name,
@@ -27,7 +26,6 @@ class ServiceQueue:
         _error = _generate_queue(Queue.Ledger.task_name('error'))
 
     class Consumer:
-
         def _generate_queue(name: str) -> _Queue:
             return generate_queue(
                 name=name,

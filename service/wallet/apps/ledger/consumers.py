@@ -13,7 +13,6 @@ logger = logging.getLogger('django')
 
 
 class EntryCreateConsumer(ConsumerStep):
-
     def get_consumers(self, channel: Channel) -> list[Consumer]:
         return [
             Consumer(

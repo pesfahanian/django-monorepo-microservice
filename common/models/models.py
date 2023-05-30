@@ -7,7 +7,6 @@ from common.models.managers import DefaultManager, ToggleableModelManager
 
 
 class UUIDModel(models.Model):
-
     class Meta:
         abstract = True
 
@@ -22,7 +21,6 @@ class UUIDModel(models.Model):
 
 
 class ToggleableModel(models.Model):
-
     class Meta:
         abstract = True
 
@@ -44,7 +42,6 @@ class ToggleableModel(models.Model):
 
 
 class TemporalModel(models.Model):
-
     class Meta:
         abstract = True
 

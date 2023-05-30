@@ -148,4 +148,4 @@ With the `userID` of an existing `Wallet`, run the following command:
 
 Import the collection at `docs/dmm.postman_collection.json` into [Postman](https://www.postman.com/).
 
-Providing the success of [Wallet Creation](#wallet-creation) and using the token obtained from [Token Generation](#token-generation), test the APIs.
+Providing the success of [Wallet Creation](#wallet-creation) and using the token obtained from [Token Generation](#token-generation), you can now test the APIs.

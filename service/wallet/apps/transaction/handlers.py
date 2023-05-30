@@ -19,22 +19,23 @@ def transaction_create_handler(transaction_id: str) -> None:
                     amount=transaction_obj.amount,
                     type=transaction_obj.type,
                 )
-                
+
                 transaction_obj.success()
-                
+
                 match transaction_obj.type:
                     case TransactionType.WITHDRAW:
-                        transaction_obj.wallet.withdraw(amount=transaction_obj.amount)
+                        transaction_obj.wallet.withdraw(
+                            amount=transaction_obj.amount)
                     case TransactionType.DEPOSIT:
-                        transaction_obj.wallet.deposit(amount=transaction_obj.amount)
+                        transaction_obj.wallet.deposit(
+                            amount=transaction_obj.amount)
                     case _:
                         pass
 
                 entry_create_task.delay(transaction_id=transaction_id)
-            
-            except:
-                transaction_obj.fail()
 
+            except:  # noqa
+                transaction_obj.fail()
 
     except Transaction.DoesNotExist:
         raise Exception(

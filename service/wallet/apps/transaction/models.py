@@ -8,7 +8,6 @@ from common.models.choices import TransactionStatus, TransactionType
 
 
 class Transaction(UUIDModel, TemporalModel):
-
     class Meta:
         verbose_name = 'Transaction'
         verbose_name_plural = 'Transactions'

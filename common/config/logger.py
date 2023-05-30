@@ -1,14 +1,13 @@
 import logging
 
 services = [
-    'wallet',
     'ledger',
+    'wallet',
     'pg',
 ]
 
 
 class CustomFilter(logging.Filter):
-
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.filter_items = [
@@ -33,7 +32,7 @@ class CustomFilter(logging.Filter):
         return all([
             not message.startswith(filter_item)
             for filter_item in self.filter_items
-        ]) and (not 'svg' in message)
+        ]) and ('svg' not in message)
 
 
 class CustomFormat(logging.Formatter):

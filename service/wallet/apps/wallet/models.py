@@ -17,7 +17,6 @@ logger = logging.getLogger('django')
 
 
 class Wallet(UUIDModel, ToggleableModel, TemporalModel):
-
     class Meta:
         verbose_name = 'Wallet'
         verbose_name_plural = 'Wallets'

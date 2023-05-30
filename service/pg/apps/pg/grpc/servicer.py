@@ -13,7 +13,6 @@ logger = logging.getLogger('django')
 
 
 class PGService(pg_pb2_grpc.PGServiceServicer):
-
     def TransactionPerform(self, request: pg_pb2.TransactionPerformRequest,
                            context: _Context) -> empty_pb2.Empty:
         try:

@@ -1,2 +1,2 @@
-from .exchanges import *
-from .queues import *
+from .exchanges import *  # noqa
+from .queues import *  # noqa

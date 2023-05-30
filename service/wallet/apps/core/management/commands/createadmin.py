@@ -4,7 +4,6 @@ from django.core.management.base import BaseCommand, CommandError
 
 
 class Command(BaseCommand):
-
     def handle(self, *args, **kwargs) -> None:
         try:
             User = get_user_model()

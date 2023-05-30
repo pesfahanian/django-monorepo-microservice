@@ -4,7 +4,7 @@ from common.config.logger import CustomFormat, CustomFilter
 
 SECRET_KEY = config(
     'SECRET_KEY',
-    default=
+    default=  # noqa
     r'django-insecure-6ognx_g8i3=x-7op@d$x@26qh_n*308#t&s5zy&!fs526+m3rs',
 )
 

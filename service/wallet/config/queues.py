@@ -15,7 +15,6 @@ class ServiceQueue:
     )
 
     class Task:
-
         def _generate_queue(name: str) -> _Queue:
             return generate_queue(
                 name=name,
@@ -35,7 +34,6 @@ SERVICE_TASK_QUEUES = tuple(
 
 
 class ProducerQueue:
-
     class Ledger:
         entry_create = generate_queue(
             name=Queue.Ledger.Consumer.entry_create,

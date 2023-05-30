@@ -5,7 +5,6 @@ ENTITY = Entity.exchange
 
 
 class Exchange:
-
     class Ledger:
 
         default = get_name(

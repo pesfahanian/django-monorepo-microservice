@@ -16,14 +16,13 @@ class EntryType(models.IntegerChoices):
 
 
 class Entry(UUIDModel):
-
     class Meta:
         verbose_name = 'Entry'
         verbose_name_plural = 'Entries'
 
     transaction_id = models.UUIDField(_('Transaction ID'), )
     user_id = models.UUIDField(_('User ID'), )
-    
+
     amount = models.DecimalField(
         default=0,
         max_digits=settings.DECIMAL_MAX_DIGITS,
