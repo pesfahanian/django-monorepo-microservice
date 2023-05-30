@@ -28,7 +28,7 @@ The Monorepo codebase architecture was achieved **without** using any of the tra
     -   Admin panel
     -   Async events
 
-### PG:
+### PG (Payment-Gateway):
 
 -   Bank API proxy middleman.
 -   Functionalities:
@@ -61,11 +61,13 @@ Before anything, generate a JWT `RS256` key-pair:
 
 > Make sure you have [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed.
 
-Build and start the services with:
+Build and start the services:
 
 ```sh
 docker compose up
 ```
+
+> If any of the service builds fail, try manually building with `docker build -t dmm/<SERVICE> -f docker/<SERVICE>.Dockerfile .`
 
 ---
 
@@ -73,7 +75,9 @@ docker compose up
 
 > Make sure you have [Python 3.11.2](https://www.python.org/downloads/release/python-3112/) installed.
 
-Make all the `.sh` files executable.
+> You also need to have [PostgreSQL](https://www.postgresql.org/) and [RabbitMQ](https://www.rabbitmq.com/) installed and running on your system.
+
+Make all the `.sh` files executable:
 
 ```sh
 find . -type f -iname "*.sh" -exec chmod +x {} \;
@@ -118,7 +122,7 @@ Run migrations for all services:
 
 ### - Wallet Creation
 
-Get a valid UUID  for `userID` from [uuidgenerator.net](https://www.uuidgenerator.net/version4).
+Get a valid UUID for `userID` from [uuidgenerator.net](https://www.uuidgenerator.net/version4).
 
 Either run the following command:
 
