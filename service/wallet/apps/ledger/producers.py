@@ -23,5 +23,5 @@ def entry_create_producer(transaction_id: str, user_id: str, amount: str,
         )
 
     except Exception as e:
-        logger.error('Failure in `entry_create_producer`. '
+        logger.error('Failure in `entry_create_producer()`. '
                      f'Reason: {str(e)}.')

@@ -11,8 +11,8 @@ logger = logging.getLogger('django')
 
 
 class EntryType(models.IntegerChoices):
-    WITHDRAW = 0, _('Withdraw')
-    DEPOSIT = 1, _('Deposit')
+    DEBIT = 0, _('Debit')
+    CREDIT = 1, _('Credit')
 
 
 class Entry(UUIDModel):

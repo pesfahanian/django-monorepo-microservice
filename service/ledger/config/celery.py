@@ -13,17 +13,14 @@ REPO_DIR = BASE_DIR.parent.parent
 sys.path.append(str(BASE_DIR))
 sys.path.append(str(REPO_DIR))
 
+import django
+
 from celery import Celery
 
 from kombu import Queue
 
 from common.events.consumers import AMQPConsumer
 from common.events.decorators.tasks import task as _task
-
-from apps.ledger.handlers import entry_create_handler
-
-# TODO: Try absolute import here.
-from .queues import ServiceQueue
 
 logger = logging.getLogger('django')
 
@@ -39,7 +36,15 @@ app.config_from_object(
     namespace='CELERY',
 )
 
-# ! Hacky fix since consumer in the app didn't consume.
+django.setup()
+
+from apps.ledger.handlers import entry_create_handler
+
+# TODO: Try absolute import here.
+from .queues import ServiceQueue
+
+
+# ! Hacky fix since consumer in the app didn't work.
 def task(queue: Queue, name: str):
     return _task(
         queue=queue,
@@ -52,18 +57,17 @@ def task(queue: Queue, name: str):
 
 @task(name=ServiceQueue.Task.entry_create.name,
       queue=ServiceQueue.Task.entry_create)
-def entry_create_task() -> None:
-    entry_create_handler()
+def entry_create_task(**kwargs) -> None:
+    entry_create_handler(**kwargs)
 
 
 def entry_create_callback(*args, **kwargs) -> None:
     try:
-        body = kwargs['body']
-        entry_create_task.delay()
+        entry_create_task.delay(**kwargs['body'])
 
     except Exception as e:
-        print('Failure in `entry_create_callback()`. '
-              f'Reason: {str(e)}.')
+        logger.error('Failure in `entry_create_callback()`. '
+                     f'Reason: {str(e)}.')
 
 
 class EntryCreateConsumer(AMQPConsumer):

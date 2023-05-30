@@ -47,7 +47,7 @@ class Wallet(UUIDModel, ToggleableModel, TemporalModel):
         if (amount > self.balance):
             raise ValueError(
                 f'Insufficient amount in user `{self.user_id}` wallet')
-        self.locked = self.locked - amount
+        self.balance -= amount
         self.save()
 
     def __str__(self) -> str:
