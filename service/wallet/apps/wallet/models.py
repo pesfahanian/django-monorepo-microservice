@@ -17,6 +17,7 @@ logger = logging.getLogger('django')
 
 
 class Wallet(UUIDModel, ToggleableModel, TemporalModel):
+
     class Meta:
         verbose_name = 'Wallet'
         verbose_name_plural = 'Wallets'
@@ -37,17 +38,19 @@ class Wallet(UUIDModel, ToggleableModel, TemporalModel):
 
     def deposit(self, amount: Decimal) -> None:
         logger.info(f'Depositing `{amount}` to user `{self.user_id}` wallet.')
-        self.balance += amount
-        self.save()
+        self.__class__.objects.filter(pk=self.pk).update(
+            balance=models.F('balance') + amount)
 
     def withdraw(self, amount: Decimal) -> None:
         logger.info(
             f'Withdrawing `{amount}` from user `{self.user_id}` wallet.')
-        if (amount > self.balance):
+        updated_rows = self.__class__.objects.filter(
+            pk=self.pk,
+            balance__gte=amount,
+        ).update(amount=models.F('balance') - amount)
+        if (updated_rows == 0):
             raise ValueError(
-                f'Insufficient amount in user `{self.user_id}` wallet')
-        self.balance -= amount
-        self.save()
+                f'Insufficient funds in user `{self.user_id}` wallet.')
 
     def __str__(self) -> str:
         return str(self.user_id)
