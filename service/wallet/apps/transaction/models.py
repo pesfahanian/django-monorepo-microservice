@@ -8,6 +8,7 @@ from common.models.choices import TransactionStatus, TransactionType
 
 
 class Transaction(UUIDModel, TemporalModel):
+
     class Meta:
         verbose_name = 'Transaction'
         verbose_name_plural = 'Transactions'
@@ -37,12 +38,12 @@ class Transaction(UUIDModel, TemporalModel):
     )
 
     def success(self) -> None:
-        self.status = TransactionStatus.SUCCESS
-        self.save()
+        self.__class__.objects.filter(pk=self.pk).update(
+            status=TransactionStatus.SUCCESS)
 
     def fail(self) -> None:
-        self.status = TransactionStatus.FAIL
-        self.save()
+        self.__class__.objects.filter(pk=self.pk).update(
+            status=TransactionStatus.FAIL)
 
     def __str__(self) -> str:
         return f'{self.id}-{self.type}'
